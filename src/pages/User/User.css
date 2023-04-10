@@ -1,0 +1,84 @@
+/* .table_container{
+    padding: 0 10%;
+    margin:40px auto 0 ;
+    
+  }
+  h1{
+    text-align: center;
+    color: #e6f1f5;
+    margin-bottom: 40px;
+  }
+  h2{
+    color: rgb(255, 255, 255);
+  }
+  .table{
+    border-collapse:collapse;
+    margin-bottom: 1rem;
+  } 
+  .table thead{
+    background-color: #000;
+    color: #fff;
+  }
+  .table thead tr th{
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.35px;
+    color: #fff;
+    opacity: 1;
+    padding: 12px;
+    font-size: 16px;
+    vertical-align: top;
+    border: 1px solid black;
+    text-align: center;
+    
+  }
+  .table tbody tr td{
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.35px;
+    color: #000000;
+    background-color: rgb(193, 226, 248);
+    padding: 8px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #000;
+  }
+  .edit{
+    margin:0px 7px ;
+  }
+  .Accept{
+    margin: 0px 10px;
+  }
+  .search{
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #fff;
+    margin-bottom: 20px;
+    border: 1px solid black;
+  }  
+  .search::placeholder{
+    font-size: 20px;
+  }
+  .search:hover{
+    box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
+  
+  }
+  .search:focus {
+    color: #4b515d;
+    border: 1px solid #B8B6B6;
+    box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+  }
+  .tbl-fixed{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: fit-content;
+    max-height: 70vh;
+  }
+  .universal{
+    overflow-x: hidden;
+  }
+   */
