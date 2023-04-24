@@ -25,7 +25,7 @@ const Edit = () => {
 
   // Getting single hotel data
   const singleProductData = () => { 
-    axios.get(`http://localhost:4000/food/getfood/${id}`)
+    axios.get(`http://localhost:4000/api/food/getfood/${id}`)
     .then(res => {
       console.log("Single Product Data :",res.data)
       setProductInfo(res.data.food)
@@ -44,52 +44,12 @@ const Edit = () => {
     setProductInfo({ ...productInfo, [e.target.name]: e.target.value });
   };
 
-  // const handleClick = async (e) => {
-  //   // console.log(file)
-  //   console.log("HotelInfo :", productInfo);
-  //   e.preventDefault();
-
-  //   try {
-  //     const imgList = await Promise.all(
-  //       Object.values(file).map(async (f) => {
-  //         const data = new FormData();
-  //         data.append("file", f);
-  //         data.append("upload_preset", "Zaid-Bolte-Chote");
-  //         data.append("cloud_name", "zaidsiddiqui");
-  //         const res = await fetch(
-  //           "https://api.cloudinary.com/v1_1/zaidsiddiqui/image/upload",
-  //           {
-  //             method: "post",
-  //             body: data,
-  //           }
-  //         );
-  //         const datas = await res.json();
-  //         const { url } = datas;
-  //         return url;
-  //         //  setFiles(datas.url)
-  //       })
-  //     );
-  //     // console.log("files",imgList)
-  //     //  Posting Data to database
-  //     axios
-  //       .post("http://localhost:5000/hotel/addhotel", {
-  //         ...productInfo,
-  //         photos: imgList,
-  //       })
-  //       .then((res) => {
-  //         console.log("REs:", res.data);
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
 
   // Updating Food Item
   const updateFood = (e) => {
     e.preventDefault()
     console.log(id)
-    axios.put(`http://localhost:4000/food/updatefood/${id}`,{
+    axios.put(`http://localhost:4000/api/food/updatefood/${id}`,{
       ...productInfo
     })
     .then(res => {

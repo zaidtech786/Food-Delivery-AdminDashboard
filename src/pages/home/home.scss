@@ -6,7 +6,9 @@
 
     .widgets{
       margin-top: 2rem;
-      width: 80%;
+      // width: 80%;
+      display: flex;
+      flex-direction: column;
       margin-left: 7rem;
      
     }

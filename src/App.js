@@ -10,26 +10,33 @@ import Edit from "./pages/Edit/Edit";
 import AddProducts from "./pages/AddProducts/AddProducts";
 import Orders from './pages/Orders/Orders';
 import Login from "./pages/login/Login";
+import Profile from "./pages/Profile/Profile";
+import NavbarC from "./components/CommonNav/NavbarC.jsx";
+import Signup from "./pages/SignUp/Signup";
+import { AppContext } from "./context/AuthContext";
 
 
 
 function App() {
-  const { darkMode } = useContext(DarkModeContext);
+  const { admin } = useContext(AppContext);
 
   return (
-    <div className={darkMode ? "app dark" : "app"}>
+    <div>
 
       <BrowserRouter>
 
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/user" element={<User/>}/>
+          <Route path="/" element={admin._id ? <Home/> : <Login/>}/>
+          <Route path="/users" element={<User/>}/>
           <Route path="/products" element={<Products/>}/>
+          <Route path="/profile" element={<Profile/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/edit/:id" element={<Edit/>}/>
-          <Route path="/addproducts" element={<AddProducts/>}/>
+          <Route path="/addproduct" element={<AddProducts/>}/>
           <Route path="/orders" element={<Orders/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/navbar" element={<NavbarC/>}/>
         </Routes>
 
       </BrowserRouter>

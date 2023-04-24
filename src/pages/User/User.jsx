@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import "./User.css"
 import  axios from 'axios';
+import Sidebar from '../../components/sidebar/Sidebar';
+import Navbar from '../../components/navbar/Navbar';
 
 const User = () => {
   const [userData,setUserData] = useState([]);
@@ -19,7 +21,8 @@ const User = () => {
     // const [user,setUser] = use
   return (
     <>
-    <h1 style={{textAlign:"center"}}>User Lists</h1>
+     
+    <h1 style={{textAlign:"center",marginTop:"2rem"}}>User Lists</h1>
    <table className="table table-hover">
   <thead>
     <tr>

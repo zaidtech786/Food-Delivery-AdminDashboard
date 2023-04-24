@@ -27,20 +27,7 @@ const AddProducts = () => {
     setProductInfo({ ...productInfo, [e.target.name]: e.target.value });
 };
 
-   
-const getHotelData = () => {
-  axios.get("http://localhost:5000/hotel/gethotels")
-  .then(res => {
-    console.log(res.data);
-    setHotels(res.data)
-  }).catch(err => {
-    console.log(err)
-  })
-}
-useEffect( () => {
-    getHotelData()
-},[])
-
+  
 
 const handleClick = async (e) => {
   // console.log(file)
@@ -70,7 +57,7 @@ const handleClick = async (e) => {
     // console.log("files",imgList)
     //  Posting Data to database
     axios
-      .post("http://localhost:4000/food/addfoods", {
+      .post("http://localhost:4000/api/food/addfoods", {
         ...productInfo,
         photos: imgList
       })
@@ -82,8 +69,6 @@ const handleClick = async (e) => {
   }
 };
 
-
-  console.log(info);
   return (
     <div className="new">
       {/* <Sidebar /> */}
@@ -119,7 +104,7 @@ const handleClick = async (e) => {
               </div>
               
               <div className="formInput">
-                <label>name</label>
+                <label>Product Name</label>
                 <input
                   onChange={handleChange}
                   type="text"
@@ -184,7 +169,7 @@ const handleClick = async (e) => {
               </div>
 
              <div style={{}}>
-              <button onClick={handleClick}> Submit</button>
+              <button onClick={(e)=>handleClick(e)}> Submit</button>
              </div>
 
             </form>

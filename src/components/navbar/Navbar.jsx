@@ -8,13 +8,14 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { AppContext } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  const {admin } = useContext(AppContext);
 
   return (
     <div className="navbar">
-      <div className="wrapper">
+      <div className="wrapper2">
         <div className="search">
           <input type="text" placeholder="Search" />
           <SearchOutlinedIcon />
@@ -24,12 +25,7 @@ const Navbar = () => {
             <LanguageOutlinedIcon className="icon" />
             English
           </div>
-          <div className="item">
-            <DarkModeOutlinedIcon
-              className="icon"
-              onClick={() => dispatch({ type: "TOGGLE" })}
-            />
-          </div>
+          
           {/* <div className="item">
             <FullscreenExitOutlinedIcon className="icon" />
           </div> */}
@@ -45,7 +41,7 @@ const Navbar = () => {
             <ListOutlinedIcon className="icon" />
           </div> */}
           <div className="item">
-             <h6 style={{marginTop:"10px"}}>Zaid Siddiqui</h6>
+             <h6 style={{marginTop:"10px"}}>{admin.name}</h6>
           </div>
         </div>
       </div>

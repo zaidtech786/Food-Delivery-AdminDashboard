@@ -8,6 +8,7 @@ import Product from "../Products/Products";
 import Dashboard from "../Dashboard/Dashboard";
 import AddProducts from "../AddProducts/AddProducts";
 import Orders from "../Orders/Orders";
+import Profile from "../Profile/Profile";
 
 const Home = () => {
   const {icon} = useContext(AppContext)
@@ -17,7 +18,6 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          {/* <h1 style={{textAlign:"center"}}>User Lists</h1> */}
            {
             icon==="user"
             ?
@@ -35,11 +35,11 @@ const Home = () => {
             ?
             <Orders/>
             :
-            icon==="dashboard"
+            icon==="profile"
             ?
-            <Dashboard/>
+            <Profile/>
             :
-            <Dashboard/>
+           <User/>
 
            }
         </div>

@@ -28,51 +28,47 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
+       
           <h5 className="logo">Faayda <span style={{color:"red"}}>Bazaar</span></h5>
-        </Link>
+       
       </div>
       <hr />
-      <div className="center">
-        <ul>
-          <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span  onClick={()=>setIcon("dashboard")}>Dashboard</span>
-          </li>
+      <div className="center" style={{color:"#fff"}}>
+        <ul >
+         
           <p className="title">LISTS</p>
 
-          <Link  style={{ textDecoration: "none" }} onClick={()=>setIcon("user")}>
+          <li  style={{ textDecoration: "none", }} onClick={()=>setIcon("user")}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <Link style={{ textDecoration: "none" ,color:"#fff" }}>Users</Link>
             </li>
-          </Link>
+          </li>
 
-          <Link  style={{ textDecoration: "none" }} onClick={()=>setIcon("products")}>
+          <li style={{ textDecoration: "none" }} onClick={()=>setIcon("products")}>
             <li>
               <StoreIcon className="icon" />
-              <span>Products</span>
+              <Link style={{ textDecoration: "none",color:"#fff" }}>Products</Link>
             </li>
-          </Link>
-
-          <li onClick={()=>setIcon("addproducts")}>
+          </li>
+          
+          <li style={{ textDecoration: "none",padding:"0.5rem"  }}  onClick={()=>setIcon("addproducts")}>
             {/* <LocalShippingIcon className="icon" /> */}
-            <span >Add Product</span>
+            <Link  style={{ textDecoration: "none",color:"#fff" }} >Add Product</Link>
           </li>
           <p className="title">USEFUL</p>
-          <li onClick={()=>setIcon("orders")}>
+          <li style={{ textDecoration: "none" ,padding:"0.5rem" }}  onClick={()=>setIcon("orders")}>
             <InsertChartIcon className="icon" />
-            <span>Bookings</span>
+            <Link style={{ textDecoration: "none",color:"#fff" }}>Orders</Link>
           </li>
           <p className="title">USER</p>
-          <li onClick={()=>setIcon("profile")}>
+          <li style={{ textDecoration: "none",padding:"0.5rem" }}  onClick={()=>setIcon("profile")}>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
+            <Link style={{ textDecoration: "none",color:"#fff" }} >Profile</Link>
           </li>
-          <li onClick={logout}>
+          <li style={{ textDecoration: "none", padding:"0.5rem" }}  onClick={logout}>
             <ExitToAppIcon className="icon"  />
-            <span>Logout</span>
+            <Link style={{ textDecoration: "none",color:"#fff" }}>Logout</Link>
           </li>
         </ul>
       </div>

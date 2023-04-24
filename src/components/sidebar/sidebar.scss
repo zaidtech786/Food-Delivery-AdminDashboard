@@ -1,18 +1,18 @@
 .sidebar {
   flex: 0.7;
-  border-right: 0.5px solid rgb(230, 227, 227);
+  // border-right: 0.5px solid rgb(230, 227, 227);
   min-height: 100vh;
-  background-color: white;
+  background-color: #3498db;
+  // position: fixed;
   
   .top {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   margin-top: 1rem;
+   margin-left: 0.5rem;
+   position: fixed;
    
     
     .logo {
-      font-size: 25px;
+      font-size: 20px;
       font-weight: bold;
       color: #2b1142;
     }
@@ -20,7 +20,7 @@
 
   hr {
     height: 0;
-    border: 0.5px solid rgb(230, 227, 227);
+    // border: 0.5px solid rgb(230, 227, 227);
   }
 
   .center {
@@ -44,11 +44,14 @@
       li {
         display: flex;
         align-items: center;
-        padding: 10px;
+        margin: 10px;
         cursor: pointer;
-
+        
         &:hover {
           background-color: #ece8ff;
+          color: black;
+          background-color: #2b1142;
+          border-radius: 5px;
         }
 
         .icon {
@@ -75,7 +78,7 @@
           width: 20px;
           height: 20px;
           border-radius: 5px;
-          border: 1px solid #7451f8;
+          // border: 1px solid #7451f8;
           cursor: pointer;
           margin: 5px;
 

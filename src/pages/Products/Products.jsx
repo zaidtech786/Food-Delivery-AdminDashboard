@@ -13,7 +13,7 @@ const Hotel = () => {
 
 
     const getData = () => {
-      axios.get("http://localhost:4000/food/getallfoods")
+      axios.get("http://localhost:4000/api/food/getallfoods")
       .then(res => {
         console.log(res.data);
         setData(res.data.foods)
@@ -26,7 +26,7 @@ const Hotel = () => {
     },[])
 
     const deleteProduct = (id) => {
-      axios.delete(`http://localhost:4000/food/removefood/${id}`)
+      axios.delete(`http://localhost:4000/api/food/removefood/${id}`)
       .then( (res) => {
         console.log(res.data)
       }).catch(err => {
@@ -53,6 +53,7 @@ const Hotel = () => {
         <th scope="col">Category</th>
         <th scope="col">Stock</th>
         <th scope="col">Discount</th>
+        <th scope="col">Operations</th>
       </tr>
     </thead>
     <tbody>
@@ -69,10 +70,11 @@ const Hotel = () => {
         <td>{category}</td>
         <td>{stock}</td>
         <td>{discount}</td>
-        <td>
-          <button style={{marginRight:"10px"}} onClick={() => navigate(`/edit/${data._id}`)}>Edit</button>
-          <button onClick={() => deleteProduct(data._id)}>Delete</button>
-        </td>
+          <div className='OperBtns' style={{display:"flex",marginTop:"1rem"}}>
+          <button style={{marginRight:"10px",padding:"0.3rem 1rem",outline:"none",borderRadius:"5px",border:"none",backgroundColor:"#16a085",fontWeight:"600"}} onClick={() => navigate(`/edit/${data._id}`)}>Edit</button>
+          <button style={{padding:"0.3rem 1rem",outline:"none",borderRadius:"5px",border:"none",backgroundColor:"#c0392b",fontWeight:"600"}} onClick={() => deleteProduct(data._id)}>Delete</button>
+          </div>
+       
       </tr>
           </>
         )

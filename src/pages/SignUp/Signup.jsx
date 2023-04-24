@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import "./Login.css"
+import React, { useState } from "react";
 
 // Material UI Imports
 import {
@@ -14,33 +13,33 @@ import {
   Alert,
   Stack,
 } from "@mui/material";
+import "../login/Login.css"
 
 // Material UI Icon Imports
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoginIcon from "@mui/icons-material/Login";
 import NavbarC from "../../components/CommonNav/NavbarC";
-// import { AppContext } from "../../Context/AppContext";
-import axios  from 'axios';
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../context/AuthContext";
+
+// Validations
 
 // Email Validation
 const isEmail = (email) =>
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
 
-export default function Login() {
-  const {dispatch2} = useContext(AppContext);
-  const navigate = useNavigate()
+export default function Signup() {
   const [showPassword, setShowPassword] = React.useState(false);
- 
+  const navigate = useNavigate()
+
   //Inputs
+  const [usernameInput, setUsernameInput] = useState();
   const [emailInput, setEmailInput] = useState();
   const [passwordInput, setPasswordInput] = useState();
-  const [rememberMe, setRememberMe] = useState();
-  const [error, setError] = useState("");
 
   // Inputs Errors
+  const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
@@ -56,6 +55,16 @@ export default function Login() {
 
   // Label for Checkbox
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+  // Validation for onBlur Username
+  const handleUsername = () => {
+    if (!usernameInput) {
+      setUsernameError(true);
+      return;
+    }
+
+    setUsernameError(false);
+  };
 
   // Validation for onBlur Email
   const handleEmail = () => {
@@ -85,11 +94,23 @@ export default function Login() {
   //handle Submittion
   const handleSubmit = () => {
     setSuccess(null);
+    //First of all Check for Errors
+
+    // IF username error is true
+    if (usernameError || !usernameInput) {
+      setFormValid(
+        "Username is set btw 5 - 15 characters long. Please Re-Enter"
+      );
+      return;
+    }
+
+    // If Email error is true
     if (emailError || !emailInput) {
       setFormValid("Email is Invalid. Please Re-Enter");
       return;
     }
 
+    // If Password error is true
     if (passwordError || !passwordInput) {
       setFormValid(
         "Password is set btw 5 - 20 characters long. Please Re-Enter"
@@ -98,47 +119,61 @@ export default function Login() {
     }
     setFormValid(null);
 
-    axios.post("http://localhost:4000/api/userlogin",{
+    // Proceed to use the information passed
+    console.log("Username : " + usernameInput);
+    console.log("Email : " + emailInput);
+    console.log("Password : " + passwordInput);
+
+    //Show Successfull Submittion
+    setSuccess("Form Submitted Successfully");
+  };
+
+
+  const SignUp = () => {
+    axios.post("http://localhost:4000/api/usersignup",{
+      name:usernameInput,
       email:emailInput,
       password:passwordInput
     })
     .then(res => {
-      console.log(res.data);
-      if(res.data.user){
-        dispatch2({type:"ADMIN_LOGIN",payload:res.data.user})
-        setSuccess("Login SuccessFully");
-        navigate("/")
-        return
-      }
-      else{
-        setError(res.data.error)
-        // navigate("/login")
-      }
+      console.log(res.data)
     })
     .catch(err => {
       console.log(err)
     })
-   
   }
-
-  // const LoginFunc = () => {
-  
-  // }
-  // };
 
   return (
     <>
-        <NavbarC/>
-        <div className="wrapper">
-        <div style={{width:"500px",height:"400px",boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px",borderRadius:"7px"}} >
-      <div style={{marginTop:"1rem",padding:"0.5rem" }}>
+    <NavbarC/>
+    <div className="wrapper">
+    <div style={{width:"500px",height:"400px",boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px",borderRadius:"7px"}} >
+      <div style={{ marginTop: "10px",padding:"0.5rem" }}>
         <TextField
-          label="Email"
+          error={usernameError}
+          label="Enter Name"
+          id="standard-basic"
+          variant="standard"
+          sx={{ width: "100%" }}
+          size="small"
+          value={usernameInput}
+          InputProps={{}}
+          onChange={(event) => {
+            setUsernameInput(event.target.value);
+          }}
+          onBlur={handleUsername}
+        />
+      </div>
+
+      <div style={{ marginTop: "5px",padding:"0.5rem" }}>
+        <TextField
+          label="Email Address"
           fullWidth
           error={emailError}
           id="standard-basic"
           variant="standard"
           sx={{ width: "100%" }}
+          value={emailInput}
           InputProps={{}}
           size="small"
           onBlur={handleEmail}
@@ -147,7 +182,7 @@ export default function Login() {
           }}
         />
       </div>
-      <div style={{  marginTop:"1rem",padding:"0.5rem" }}>
+      <div style={{ marginTop: "5px",padding:"0.5rem" }}>
         <FormControl sx={{ width: "100%" }} variant="standard">
           <InputLabel
             error={passwordError}
@@ -163,7 +198,7 @@ export default function Login() {
             onChange={(event) => {
               setPasswordInput(event.target.value);
             }}
-        
+            value={passwordInput}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -179,23 +214,14 @@ export default function Login() {
         </FormControl>
       </div>
 
-      <div style={{ fontSize: "14px" }}>
-        <Checkbox
-          {...label}
-          size="small"
-          onChange={(event) => setRememberMe(event.target.checked)}
-        />
-        Remember Me
-      </div>
-
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: "10px",width:"90%",margin:"auto",marginTop:"1rem" }}>
         <Button
           variant="contained"
           fullWidth
           startIcon={<LoginIcon />}
-          onClick={handleSubmit}
+          onClick={SignUp}
         >
-          LOGIN
+          SignUp
         </Button>
       </div>
 
@@ -217,20 +243,12 @@ export default function Login() {
         </Stack>
       )}
 
-      {error && (
-        <Stack sx={{ width: "100%", paddingTop: "10px" }} spacing={2}>
-          <Alert severity="error" size="small">
-            {error}
-          </Alert>
-        </Stack>
-      )}
-
       <div style={{ marginTop: "7px", fontSize: "14px" }} margin="left">
         <a>Forgot Password</a>
         <br />
-        Do you have an account ?{" "}
-        <small style={{ textDecoration: "underline", color: "blue",cursor:"pointer" }} onClick={() => navigate("/signup")}>
-          Sign Up
+        Do you have an account ?
+        <small style={{ textDecoration: "underline", color: "blue",cursor:"pointer" }} onClick={() => navigate("/login")}>
+          Sign in
         </small>
       </div>
       </div>
